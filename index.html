@@ -9,7 +9,7 @@
     <!-- Google Fonts: Plus Jakarta Sans, Prompt & Vintage Grunge Display Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Prompt:wght@300;400;500;600;700&family=Rubik+Glitch&family=Special+Elite&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Prompt:wght@300;400;500;600;700&family=Special+Elite&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -47,13 +47,6 @@
                             100: '#e0f2fe',
                             200: '#bae6fd',
                             500: '#0ea5e9',
-                        },
-                        grunge: {
-                            red: '#b91c1c',
-                            crimson: '#991b1b',
-                            orange: '#ea580c',
-                            amber: '#d97706',
-                            paper: '#f5efe6',
                         }
                     }
                 }
@@ -64,77 +57,169 @@
     <style>
         body {
             transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
         }
         .glass-nav {
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
         }
 
-        /* Vintage Red-Orange Animated Text (ตัวหนังสือขยับได้ สีแดงตัดส้มวินเทจ) */
+        /* 1. High-Energy Vintage Red-Orange Animated Text + Glitch/Pulse */
         .vintage-animated-text {
             background: linear-gradient(
                 110deg,
-                #991b1b 0%,
-                #dc2626 25%,
-                #ea580c 50%,
-                #f59e0b 75%,
-                #991b1b 100%
+                #7f1d1d 0%,
+                #dc2626 20%,
+                #ea580c 45%,
+                #f59e0b 65%,
+                #dc2626 85%,
+                #7f1d1d 100%
             );
-            background-size: 250% auto;
+            background-size: 300% auto;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: vintageShimmer 4s linear infinite, grungeFloat 3s ease-in-out infinite;
-            filter: drop-shadow(2px 3px 0px rgba(153, 27, 27, 0.28));
+            animation: vintageShimmer 2.4s linear infinite, grungeBounce 2.2s ease-in-out infinite;
+            filter: drop-shadow(3px 4px 0px rgba(153, 27, 27, 0.32));
         }
 
         .dark .vintage-animated-text {
             background: linear-gradient(
                 110deg,
                 #ef4444 0%,
-                #f97316 30%,
-                #fbbf24 55%,
-                #dc2626 80%,
+                #f97316 25%,
+                #fde047 50%,
+                #ea580c 75%,
                 #ef4444 100%
             );
-            background-size: 250% auto;
+            background-size: 300% auto;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0px 0px 14px rgba(234, 88, 12, 0.45));
+            filter: drop-shadow(0px 0px 18px rgba(249, 115, 22, 0.55));
+        }
+
+        /* Letter-by-letter Wave Motion for Hero Name */
+        .wave-char {
+            display: inline-block;
+            animation: charWave 1.8s ease-in-out infinite;
+        }
+        @keyframes charWave {
+            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+            35% { transform: translateY(-9px) rotate(-2deg) scale(1.04); }
+            70% { transform: translateY(3px) rotate(1.5deg) scale(0.98); }
         }
 
         @keyframes vintageShimmer {
             0% { background-position: 0% center; }
-            100% { background-position: 250% center; }
+            100% { background-position: 300% center; }
         }
 
-        @keyframes grungeFloat {
-            0%, 100% {
-                transform: translateY(0px) rotate(-0.4deg);
-            }
-            50% {
-                transform: translateY(-4px) rotate(0.4deg);
-            }
+        @keyframes grungeBounce {
+            0%, 100% { transform: translateY(0px) skewX(0deg); }
+            25% { transform: translateY(-4px) skewX(-1.5deg); }
+            75% { transform: translateY(2px) skewX(1.5deg); }
         }
 
-        /* Freedom / Anarchy / Peace Symbol Pulse & Spin */
+        /* 2. Infinite Vintage Ticker / Marquee Banner */
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: marqueeScroll 20s linear infinite;
+        }
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+        @keyframes marqueeScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* 3. Freedom Symbol Multi-Axis Spin & Glow */
         .freedom-symbol-spin {
-            animation: slowSpin 18s linear infinite;
+            animation: dynamicSpin 7s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
         }
-        @keyframes slowSpin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        @keyframes dynamicSpin {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
         }
 
-        /* Vintage Film Grain / Halftone Overlay on Kurt Cobain Tribute Card */
+        /* 4. Kurt Cobain Card Rocking, Sunburst Spin & Soundwave Equalizer */
+        .poster-rock {
+            animation: posterRock 5s ease-in-out infinite;
+        }
+        @keyframes posterRock {
+            0%, 100% { transform: rotate(-1.5deg) translateY(0px); }
+            50% { transform: rotate(1.5deg) translateY(-8px); }
+        }
+
+        .kurt-head-nod {
+            transform-origin: 110px 145px;
+            animation: headNod 1.6s ease-in-out infinite;
+        }
+        @keyframes headNod {
+            0%, 100% { transform: rotate(-2.5deg) translateY(0px); }
+            50% { transform: rotate(3deg) translateY(3px); }
+        }
+
+        .sunglasses-glint {
+            animation: glintMove 2.5s ease-in-out infinite;
+        }
+        @keyframes glintMove {
+            0%, 100% { opacity: 0.3; transform: translateX(-2px); }
+            50% { opacity: 1; transform: translateX(4px); }
+        }
+
+        .eq-bar {
+            transform-origin: bottom;
+            animation: eqBounce 0.8s ease-in-out infinite alternate;
+        }
+        @keyframes eqBounce {
+            0% { transform: scaleY(0.25); }
+            100% { transform: scaleY(1); }
+        }
+
+        /* 5. Floating Background Freedom Symbols */
+        .floating-emblem {
+            animation: floatDrift 9s ease-in-out infinite;
+        }
+        @keyframes floatDrift {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(15px, -25px) rotate(12deg); }
+            66% { transform: translate(-12px, -10px) rotate(-10deg); }
+        }
+
+        /* 6. Scroll Reveal Animation */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(32px) scale(0.97);
+            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* 7. Interactive 3D Tilt & Hover Lift */
+        .interactive-card {
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+        .interactive-card:hover {
+            transform: translateY(-6px) scale(1.015);
+            box-shadow: 0 18px 35px -10px rgba(220, 38, 38, 0.22);
+        }
+
         .vintage-grain {
-            background-image: radial-gradient(rgba(153, 27, 27, 0.14) 1px, transparent 0);
+            background-image: radial-gradient(rgba(153, 27, 27, 0.16) 1px, transparent 0);
             background-size: 12px 12px;
         }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 dark:bg-navy-950 dark:text-slate-100 antialiased selection:bg-orange-200 selection:text-red-900">
+
+    <!-- Top Scroll Progress Bar (Red-Orange Vintage Gradient) -->
+    <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-red-700 via-orange-500 to-amber-400 z-[60] transition-all duration-100" style="width: 0%;"></div>
 
     <!-- 1. HEADER / NAVBAR -->
     <header class="fixed top-0 left-0 right-0 z-50 glass-nav bg-white/85 dark:bg-navy-900/85 border-b border-slate-200/80 dark:border-slate-800 transition-colors">
@@ -142,7 +227,7 @@
             <div class="flex items-center justify-between h-16">
                 <!-- Brand / Name -->
                 <a href="#" class="flex items-center gap-2.5 group">
-                    <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-red-700 to-orange-600 text-white flex items-center justify-center font-en font-bold text-lg shadow-sm group-hover:scale-105 transition-transform">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-red-700 to-orange-600 text-white flex items-center justify-center font-en font-bold text-lg shadow-sm group-hover:rotate-12 group-hover:scale-110 transition-transform">
                         SS
                     </div>
                     <div class="flex flex-col">
@@ -153,17 +238,17 @@
 
                 <!-- Desktop Navigation -->
                 <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600 dark:text-slate-300">
-                    <a href="#about" class="hover:text-red-600 dark:hover:text-orange-400 transition-colors">About</a>
-                    <a href="#skills" class="hover:text-red-600 dark:hover:text-orange-400 transition-colors">Skills</a>
-                    <a href="#projects" class="hover:text-red-600 dark:hover:text-orange-400 transition-colors">Projects</a>
-                    <a href="#experience" class="hover:text-red-600 dark:hover:text-orange-400 transition-colors">Experience</a>
-                    <a href="#certifications" class="hover:text-red-600 dark:hover:text-orange-400 transition-colors">Certifications</a>
-                    <a href="#contact" class="hover:text-red-600 dark:hover:text-orange-400 transition-colors">Contact</a>
+                    <a href="#about" class="hover:text-red-600 dark:hover:text-orange-400 hover:-translate-y-0.5 transition-all">About</a>
+                    <a href="#skills" class="hover:text-red-600 dark:hover:text-orange-400 hover:-translate-y-0.5 transition-all">Skills</a>
+                    <a href="#projects" class="hover:text-red-600 dark:hover:text-orange-400 hover:-translate-y-0.5 transition-all">Projects</a>
+                    <a href="#experience" class="hover:text-red-600 dark:hover:text-orange-400 hover:-translate-y-0.5 transition-all">Experience</a>
+                    <a href="#certifications" class="hover:text-red-600 dark:hover:text-orange-400 hover:-translate-y-0.5 transition-all">Certifications</a>
+                    <a href="#contact" class="hover:text-red-600 dark:hover:text-orange-400 hover:-translate-y-0.5 transition-all">Contact</a>
                 </nav>
 
                 <!-- Right Actions: Theme Toggle & Mobile Menu Button -->
                 <div class="flex items-center gap-2">
-                    <button id="theme-toggle" aria-label="Toggle Dark Mode" class="p-2.5 rounded-xl bg-slate-100 hover:bg-orange-100 dark:bg-navy-800 dark:hover:bg-slate-700 text-slate-700 dark:text-orange-400 transition-colors">
+                    <button id="theme-toggle" aria-label="Toggle Dark Mode" class="p-2.5 rounded-xl bg-slate-100 hover:bg-orange-100 dark:bg-navy-800 dark:hover:bg-slate-700 text-slate-700 dark:text-orange-400 hover:rotate-12 transition-all">
                         <i data-lucide="moon" class="w-5 h-5 block dark:hidden"></i>
                         <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
                     </button>
@@ -188,19 +273,29 @@
 
     <main>
         <!-- 2. HERO SECTION -->
-        <section class="relative pt-28 pb-20 md:pt-36 md:pb-28 overflow-hidden">
-            <!-- Soft Vintage Red-Orange & Pastel Blue Background Blobs -->
-            <div class="absolute top-20 left-1/4 w-80 h-80 bg-red-500/15 dark:bg-red-600/15 rounded-full blur-3xl -z-10"></div>
-            <div class="absolute bottom-10 right-1/4 w-80 h-80 bg-orange-500/20 dark:bg-orange-500/15 rounded-full blur-3xl -z-10"></div>
+        <section class="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden">
+            <!-- Floating Background Freedom Emblems & Blobs -->
+            <div class="absolute top-20 left-1/4 w-80 h-80 bg-red-500/20 dark:bg-red-600/20 rounded-full blur-3xl -z-10 animate-pulse"></div>
+            <div class="absolute bottom-10 right-1/4 w-96 h-96 bg-orange-500/25 dark:bg-orange-500/15 rounded-full blur-3xl -z-10 animate-pulse" style="animation-delay: 1s;"></div>
+
+            <!-- Decorative Floating Freedom Symbol Left -->
+            <svg class="hidden sm:block absolute top-32 left-8 w-16 h-16 text-red-600/15 dark:text-orange-500/15 floating-emblem -z-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 2v20M12 12l-6.5 6.5M12 12l6.5 6.5"/>
+            </svg>
+            <!-- Decorative Floating Freedom Symbol Right -->
+            <svg class="hidden sm:block absolute bottom-20 right-10 w-24 h-24 text-orange-600/15 dark:text-red-500/15 floating-emblem -z-10" style="animation-delay: 2.5s;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 2v20M12 12l-6.5 6.5M12 12l6.5 6.5"/>
+            </svg>
 
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
                     <!-- Left Content -->
                     <div class="flex-1 text-center lg:text-left">
                         <!-- Freedom Symbol + Status Pill -->
-                        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-red-100 to-orange-100 dark:from-red-950/80 dark:to-orange-950/80 text-red-700 dark:text-orange-300 text-xs sm:text-sm font-medium mb-6 border border-red-300/60 dark:border-orange-500/30 shadow-sm">
-                            <!-- Freedom & Peace Custom SVG Emblem -->
-                            <svg class="w-4 h-4 text-red-600 dark:text-orange-400 freedom-symbol-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-red-100 to-orange-100 dark:from-red-950/80 dark:to-orange-950/80 text-red-700 dark:text-orange-300 text-xs sm:text-sm font-medium mb-6 border border-red-300/60 dark:border-orange-500/30 shadow-sm hover:scale-105 transition-transform">
+                            <svg class="w-4 h-4 text-red-600 dark:text-orange-400 freedom-symbol-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
                                 <circle cx="12" cy="12" r="10"/>
                                 <line x1="12" y1="2" x2="12" y2="22"/>
                                 <line x1="12" y1="12" x2="5" y2="19"/>
@@ -213,44 +308,44 @@
                             สวัสดีครับ, ผมชื่อ
                         </p>
 
-                        <!-- Animated Vintage Red-Orange Typography -->
+                        <!-- Animated Wave + Vintage Red-Orange Typography -->
                         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
-                            <span class="vintage-animated-text inline-block">
+                            <span id="wave-thai-name" class="block">
                                 นายสุรสิทธิ์ สาลีสี
                             </span>
-                            <span class="block font-vintage tracking-wider text-2xl sm:text-3xl lg:text-4xl vintage-animated-text mt-1.5 uppercase">
-                                SURASIT SALEESEE • FREEDOM &amp; PEOPLE
+                            <span id="wave-en-name" class="block font-vintage tracking-wider text-2xl sm:text-3xl lg:text-4xl mt-2 uppercase">
+                                SURASIT SALEESEE • FREEDOM
                             </span>
                         </h1>
 
                         <!-- Target Roles -->
-                        <div class="mt-5 flex flex-wrap items-center justify-center lg:justify-start gap-2">
-                            <span class="font-en text-sm sm:text-base font-semibold px-3.5 py-1 rounded-lg bg-gradient-to-r from-red-700 to-orange-600 text-white shadow-sm">
+                        <div class="mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
+                            <span class="font-en text-sm sm:text-base font-semibold px-3.5 py-1 rounded-lg bg-gradient-to-r from-red-700 to-orange-600 text-white shadow-sm hover:scale-110 transition-transform cursor-default">
                                 HR Generalist
                             </span>
-                            <span class="font-en text-sm sm:text-base font-semibold px-3.5 py-1 rounded-lg bg-pastelblue-100 text-navy-900 dark:bg-navy-800 dark:text-slate-200">
+                            <span class="font-en text-sm sm:text-base font-semibold px-3.5 py-1 rounded-lg bg-pastelblue-100 text-navy-900 dark:bg-navy-800 dark:text-slate-200 hover:scale-110 transition-transform cursor-default">
                                 Talent Acquisition
                             </span>
-                            <span class="font-en text-sm sm:text-base font-semibold px-3.5 py-1 rounded-lg bg-orange-100 text-red-900 dark:bg-navy-800 dark:text-orange-300 border border-orange-200 dark:border-orange-500/30">
+                            <span class="font-en text-sm sm:text-base font-semibold px-3.5 py-1 rounded-lg bg-orange-100 text-red-900 dark:bg-navy-800 dark:text-orange-300 border border-orange-200 dark:border-orange-500/30 hover:scale-110 transition-transform cursor-default">
                                 HRD
                             </span>
                         </div>
 
-                        <!-- Tagline -->
-                        <blockquote class="mt-6 text-lg sm:text-xl font-en italic text-slate-700 dark:text-slate-300 border-l-4 border-red-600 dark:border-orange-500 pl-4 max-w-xl mx-auto lg:mx-0">
-                            "Bridging organizational goals with employee happiness &amp; growth."
+                        <!-- Typewriter Tagline -->
+                        <blockquote class="mt-6 text-lg sm:text-xl font-en italic text-slate-700 dark:text-slate-300 border-l-4 border-red-600 dark:border-orange-500 pl-4 max-w-xl mx-auto lg:mx-0 min-h-[3.5rem] flex items-center">
+                            <span id="typewriter-tagline"></span><span class="inline-block w-0.5 h-6 bg-orange-500 ml-1 animate-ping"></span>
                         </blockquote>
 
                         <!-- CTA Buttons -->
                         <div class="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-4">
                             <a href="https://drive.google.com/..." target="_blank" rel="noopener noreferrer"
-                               class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-red-700 via-red-600 to-orange-600 hover:from-red-800 hover:to-orange-700 text-white font-medium shadow-md hover:shadow-lg transition-all">
-                                <i data-lucide="file-down" class="w-5 h-5"></i>
+                               class="group inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-red-700 via-red-600 to-orange-600 hover:from-red-800 hover:to-orange-700 text-white font-medium shadow-md hover:shadow-xl hover:-translate-y-1 transition-all">
+                                <i data-lucide="file-down" class="w-5 h-5 group-hover:animate-bounce"></i>
                                 ดาวน์โหลด Resume (PDF)
                             </a>
                             <a href="#contact"
-                               class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-white hover:bg-orange-50 dark:bg-navy-800 dark:hover:bg-slate-700 text-navy-900 dark:text-white font-medium border border-orange-200 dark:border-slate-700 shadow-sm transition-all">
-                                <i data-lucide="send" class="w-5 h-5 text-red-600 dark:text-orange-400"></i>
+                               class="group inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-white hover:bg-orange-50 dark:bg-navy-800 dark:hover:bg-slate-700 text-navy-900 dark:text-white font-medium border border-orange-200 dark:border-slate-700 shadow-sm hover:-translate-y-1 transition-all">
+                                <i data-lucide="send" class="w-5 h-5 text-red-600 dark:text-orange-400 group-hover:translate-x-1 transition-transform"></i>
                                 ติดต่อฉัน
                             </a>
                         </div>
@@ -269,72 +364,83 @@
                         </div>
                     </div>
 
-                    <!-- Right Vintage Grunge & Kurt Cobain Inspiration Card -->
-                    <div class="w-full max-w-sm lg:max-w-md">
-                        <div class="relative bg-[#fbf6ee] dark:bg-navy-900 rounded-3xl p-6 sm:p-7 shadow-xl border-2 border-red-800/20 dark:border-orange-500/30 vintage-grain">
+                    <!-- Right Animated Vintage Grunge & Kurt Cobain Inspiration Card -->
+                    <div class="w-full max-w-sm lg:max-w-md poster-rock">
+                        <div id="tilt-poster" class="relative bg-[#fbf6ee] dark:bg-navy-900 rounded-3xl p-6 sm:p-7 shadow-2xl border-2 border-red-800/25 dark:border-orange-500/35 vintage-grain transition-transform duration-200">
                             <!-- Top Vintage Stamp Header -->
                             <div class="flex items-center justify-between text-[11px] font-typewriter uppercase tracking-widest text-red-800 dark:text-orange-400 mb-3">
                                 <span class="flex items-center gap-1.5">
-                                    <!-- Freedom Dove / Peace Emblem -->
-                                    <svg class="w-4 h-4 text-red-700 dark:text-orange-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <svg class="w-4 h-4 text-red-700 dark:text-orange-400 freedom-symbol-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                                         <circle cx="12" cy="12" r="10"/>
                                         <path d="M12 2v20M12 12l-6.5 6.5M12 12l6.5 6.5"/>
                                     </svg>
                                     SYMBOL OF FREEDOM
                                 </span>
-                                <span>90s VINTAGE SPIRIT</span>
+                                <span class="flex items-center gap-1">
+                                    <!-- Mini Grunge Audio Equalizer -->
+                                    <span class="inline-flex items-end gap-0.5 h-3">
+                                        <span class="w-0.5 h-3 bg-red-600 dark:bg-orange-400 eq-bar"></span>
+                                        <span class="w-0.5 h-3 bg-orange-500 dark:bg-red-400 eq-bar" style="animation-delay: 0.2s;"></span>
+                                        <span class="w-0.5 h-3 bg-red-700 dark:bg-amber-400 eq-bar" style="animation-delay: 0.4s;"></span>
+                                        <span class="w-0.5 h-3 bg-orange-600 dark:bg-orange-300 eq-bar" style="animation-delay: 0.1s;"></span>
+                                    </span>
+                                    90s GRUNGE
+                                </span>
                             </div>
 
-                            <!-- Kurt Cobain Stylized Vintage Pop-Art SVG Poster -->
+                            <!-- Kurt Cobain Animated Vintage Poster -->
                             <div class="aspect-square rounded-2xl bg-gradient-to-br from-red-900 via-red-700 to-orange-600 p-4 flex flex-col items-center justify-between text-center relative overflow-hidden shadow-inner border border-red-950/30">
-                                <!-- Background Halftone & Sunburst Rays -->
-                                <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#fde68a_1.5px,transparent_1.5px)] [background-size:14px_14px]"></div>
+                                <!-- Background Halftone & Spinning Sunburst Ring -->
+                                <div class="absolute inset-0 opacity-25 bg-[radial-gradient(#fde68a_1.5px,transparent_1.5px)] [background-size:14px_14px]"></div>
                                 
                                 <!-- Top Quote -->
-                                <p class="relative z-10 font-typewriter text-[11px] sm:text-xs text-amber-100/95 tracking-wide px-2 pt-1">
+                                <p class="relative z-10 font-typewriter text-[11px] sm:text-xs text-amber-100 tracking-wide px-2 pt-1">
                                     "Wanting to be someone else is a waste of who you are."
                                 </p>
 
-                                <!-- Stylized Kurt Cobain Vintage Vector Illustration (Iconic Blonde Hair, Oval Sunglasses & Guitar) -->
-                                <svg class="relative z-10 w-44 h-44 sm:w-48 sm:h-48 drop-shadow-[0_6px_10px_rgba(0,0,0,0.45)]" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <!-- Aura / Freedom Ring Behind Head -->
-                                    <circle cx="110" cy="105" r="78" stroke="#FDBA74" stroke-width="2" stroke-dasharray="6 4" opacity="0.7"/>
-                                    
-                                    <!-- Iconic Messy 90s Blonde Grunge Hair (Back Layer) -->
-                                    <path d="M52 125C44 92 55 46 110 42C165 46 176 92 168 125C164 142 155 156 146 164L74 164C65 156 56 142 52 125Z" fill="#F59E0B"/>
-                                    <path d="M58 118C50 85 65 48 110 46C155 48 170 85 162 118" fill="#FBBF24"/>
+                                <!-- Animated Kurt Cobain Vintage Vector Illustration -->
+                                <svg class="relative z-10 w-44 h-44 sm:w-48 sm:h-48 drop-shadow-[0_8px_12px_rgba(0,0,0,0.5)]" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Rotating Freedom & Grunge Aura Ring -->
+                                    <g class="origin-[110px_105px] freedom-symbol-spin">
+                                        <circle cx="110" cy="105" r="82" stroke="#FDBA74" stroke-width="2.2" stroke-dasharray="8 5" opacity="0.8"/>
+                                        <circle cx="110" cy="105" r="72" stroke="#FDE047" stroke-width="1" stroke-dasharray="3 6" opacity="0.6"/>
+                                    </g>
 
-                                    <!-- Striped Grunge Sweater (Red & Orange/Cream Stripes) -->
+                                    <!-- Striped Grunge Sweater (Static Body Base) -->
                                     <path d="M48 212C54 176 78 162 110 162C142 162 166 176 172 212H48Z" fill="#7F1D1D"/>
                                     <path d="M53 196H167L170 205H50L53 196Z" fill="#EA580C"/>
                                     <path d="M60 179H160L164 188H56L60 179Z" fill="#FDE68A"/>
 
-                                    <!-- Neck -->
-                                    <rect x="97" y="142" width="26" height="26" rx="8" fill="#FED7AA"/>
+                                    <!-- Animated Nodding Head & Flowing Hair -->
+                                    <g class="kurt-head-nod">
+                                        <!-- Iconic Messy 90s Blonde Grunge Hair (Back Layer) -->
+                                        <path d="M52 125C44 92 55 46 110 42C165 46 176 92 168 125C164 142 155 156 146 164L74 164C65 156 56 142 52 125Z" fill="#F59E0B"/>
+                                        <path d="M58 118C50 85 65 48 110 46C155 48 170 85 162 118" fill="#FBBF24"/>
 
-                                    <!-- Face Contour -->
-                                    <path d="M76 96C76 74 91 60 110 60C129 60 144 74 144 96C144 123 130 146 110 146C90 146 76 123 76 96Z" fill="#FFEDD5"/>
+                                        <!-- Neck -->
+                                        <rect x="97" y="142" width="26" height="26" rx="8" fill="#FED7AA"/>
 
-                                    <!-- Iconic White-Rimmed Oval Clout Sunglasses -->
-                                    <g>
-                                        <!-- Bridge -->
-                                        <rect x="103" y="95" width="14" height="4" rx="2" fill="#FFFBEB"/>
-                                        <!-- Left Lens -->
-                                        <ellipse cx="91" cy="98" rx="16" ry="11" fill="#1E1B18" stroke="#FFFBEB" stroke-width="4.5"/>
-                                        <path d="M82 94L92 102" stroke="#FB923C" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
-                                        <!-- Right Lens -->
-                                        <ellipse cx="129" cy="98" rx="16" ry="11" fill="#1E1B18" stroke="#FFFBEB" stroke-width="4.5"/>
-                                        <path d="M120 94L130 102" stroke="#FB923C" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+                                        <!-- Face Contour -->
+                                        <path d="M76 96C76 74 91 60 110 60C129 60 144 74 144 96C144 123 130 146 110 146C90 146 76 123 76 96Z" fill="#FFEDD5"/>
+
+                                        <!-- Iconic White-Rimmed Oval Clout Sunglasses with Animated Glint -->
+                                        <g>
+                                            <rect x="103" y="95" width="14" height="4" rx="2" fill="#FFFBEB"/>
+                                            <ellipse cx="91" cy="98" rx="16" ry="11" fill="#1E1B18" stroke="#FFFBEB" stroke-width="4.5"/>
+                                            <path class="sunglasses-glint" d="M81 94L92 103" stroke="#FB923C" stroke-width="2.5" stroke-linecap="round"/>
+                                            <ellipse cx="129" cy="98" rx="16" ry="11" fill="#1E1B18" stroke="#FFFBEB" stroke-width="4.5"/>
+                                            <path class="sunglasses-glint" d="M119 94L130 103" stroke="#FB923C" stroke-width="2.5" stroke-linecap="round"/>
+                                        </g>
+
+                                        <!-- Subtle Grunge Goatee & Calm Expression -->
+                                        <path d="M101 125C105 128 115 128 119 125" stroke="#9A3412" stroke-width="2.5" stroke-linecap="round"/>
+                                        <path d="M106 135L110 139L114 135" stroke="#D97706" stroke-width="2" stroke-linecap="round"/>
+
+                                        <!-- Front Curtain Hair Strands -->
+                                        <path d="M84 56C74 74 70 96 73 124C64 106 64 76 78 58L84 56Z" fill="#FDE047"/>
+                                        <path d="M136 56C146 74 150 96 147 124C156 106 156 76 142 58L136 56Z" fill="#FDE047"/>
+                                        <path d="M88 54C96 68 103 76 108 82C100 72 96 62 95 52L88 54Z" fill="#F59E0B"/>
                                     </g>
-
-                                    <!-- Subtle Grunge Goatee & Calm Expression -->
-                                    <path d="M101 125C105 128 115 128 119 125" stroke="#9A3412" stroke-width="2.5" stroke-linecap="round"/>
-                                    <path d="M106 135L110 139L114 135" stroke="#D97706" stroke-width="2" stroke-linecap="round"/>
-
-                                    <!-- Front Curtain Hair Strands -->
-                                    <path d="M84 56C74 74 70 96 73 124C64 106 64 76 78 58L84 56Z" fill="#FDE047"/>
-                                    <path d="M136 56C146 74 150 96 147 124C156 106 156 76 142 58L136 56Z" fill="#FDE047"/>
-                                    <path d="M88 54C96 68 103 76 108 82C100 72 96 62 95 52L88 54Z" fill="#F59E0B"/>
                                 </svg>
 
                                 <!-- Bottom Caption inside Poster -->
@@ -361,19 +467,50 @@
             </div>
         </section>
 
+        <!-- RUNNING VINTAGE MARQUEE STRIP (แถบข้อความวิ่งสไตล์วินเทจสีแดงตัดส้ม + เครื่องหมายอิสรภาพ) -->
+        <div class="bg-gradient-to-r from-red-800 via-orange-600 to-red-800 text-amber-100 py-3 border-y-2 border-red-950/30 overflow-hidden select-none shadow-inner">
+            <div class="marquee-track font-vintage tracking-widest text-sm sm:text-base uppercase flex items-center gap-8">
+                <span>☮ FREEDOM OF THOUGHT</span>
+                <span>•</span>
+                <span>PEOPLE-FIRST HR</span>
+                <span>•</span>
+                <span>COME AS YOU ARE</span>
+                <span>•</span>
+                <span>DATA-DRIVEN EMPATHY</span>
+                <span>•</span>
+                <span>SURASIT SALEESEE PORTFOLIO</span>
+                <span>•</span>
+                <span>AUTHENTICITY &amp; GROWTH</span>
+                <span>•</span>
+                <!-- Duplicate for seamless loop -->
+                <span>☮ FREEDOM OF THOUGHT</span>
+                <span>•</span>
+                <span>PEOPLE-FIRST HR</span>
+                <span>•</span>
+                <span>COME AS YOU ARE</span>
+                <span>•</span>
+                <span>DATA-DRIVEN EMPATHY</span>
+                <span>•</span>
+                <span>SURASIT SALEESEE PORTFOLIO</span>
+                <span>•</span>
+                <span>AUTHENTICITY &amp; GROWTH</span>
+                <span>•</span>
+            </div>
+        </div>
+
         <!-- 3. ABOUT ME -->
-        <section id="about" class="py-20 bg-white dark:bg-navy-900/50 border-y border-slate-200/60 dark:border-slate-800/80">
+        <section id="about" class="py-20 bg-white dark:bg-navy-900/50 border-b border-slate-200/60 dark:border-slate-800/80 reveal-on-scroll">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-3xl">
                     <span class="font-en text-xs font-bold uppercase tracking-widest text-orange-600 dark:text-orange-400">About Me</span>
                     <h2 class="text-2xl sm:text-3xl font-bold mt-2">
-                        <span class="vintage-animated-text">เกี่ยวกับฉัน &amp; แนวคิดการทำงานสาย HR</span>
+                        <span class="vintage-animated-text inline-block">เกี่ยวกับฉัน &amp; แนวคิดการทำงานสาย HR</span>
                     </h2>
                 </div>
 
                 <div class="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
                     <!-- Main Bio & Career Goal -->
-                    <div class="lg:col-span-7 bg-slate-50 dark:bg-navy-900 rounded-2xl p-6 sm:p-8 border border-slate-200/70 dark:border-slate-800 flex flex-col justify-between">
+                    <div class="lg:col-span-7 bg-slate-50 dark:bg-navy-900 rounded-2xl p-6 sm:p-8 border border-slate-200/70 dark:border-slate-800 flex flex-col justify-between interactive-card">
                         <div>
                             <div class="flex items-center gap-3 mb-4">
                                 <div class="p-2.5 rounded-xl bg-orange-100 dark:bg-orange-500/20 text-red-700 dark:text-orange-300">
@@ -408,13 +545,12 @@
                         </div>
                     </div>
 
-                    <!-- HR Philosophy Card with Freedom & Vintage Red-Orange Accent -->
-                    <div class="lg:col-span-5 bg-gradient-to-br from-red-950 via-navy-900 to-orange-950 text-white rounded-2xl p-6 sm:p-8 shadow-md flex flex-col justify-between relative overflow-hidden border border-orange-500/20">
-                        <div class="absolute -right-8 -bottom-8 w-40 h-40 rounded-full bg-orange-500/20 blur-xl"></div>
+                    <!-- HR Philosophy Card -->
+                    <div class="lg:col-span-5 bg-gradient-to-br from-red-950 via-navy-900 to-orange-950 text-white rounded-2xl p-6 sm:p-8 shadow-md flex flex-col justify-between relative overflow-hidden border border-orange-500/20 interactive-card">
+                        <div class="absolute -right-8 -bottom-8 w-40 h-40 rounded-full bg-orange-500/25 blur-xl animate-pulse"></div>
                         <div>
                             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-white/10 text-orange-200 text-xs font-en font-medium mb-4">
-                                <!-- Freedom Symbol Icon -->
-                                <svg class="w-4 h-4 text-orange-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <svg class="w-4 h-4 text-orange-300 freedom-symbol-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <circle cx="12" cy="12" r="10"/>
                                     <path d="M12 2v20M12 12l-6.5 6.5M12 12l6.5 6.5"/>
                                 </svg>
@@ -438,12 +574,12 @@
         </section>
 
         <!-- 4. HR SKILLS & COMPETENCIES -->
-        <section id="skills" class="py-20">
+        <section id="skills" class="py-20 reveal-on-scroll">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-2xl mx-auto">
                     <span class="font-en text-xs font-bold uppercase tracking-widest text-orange-600 dark:text-orange-400">Skills &amp; Competencies</span>
                     <h2 class="text-2xl sm:text-3xl font-bold mt-2">
-                        <span class="vintage-animated-text">ทักษะและความเชี่ยวชาญสายงาน HR</span>
+                        <span class="vintage-animated-text inline-block">ทักษะและความเชี่ยวชาญสายงาน HR</span>
                     </h2>
                     <p class="text-slate-500 dark:text-slate-400 text-sm sm:text-base mt-2">
                         ความเข้าใจในกระบวนการบริหารคน เครื่องมือวิเคราะห์ข้อมูล และทักษะการสื่อสาร
@@ -452,7 +588,7 @@
 
                 <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
                     <!-- Category 1: HR Hard Skills -->
-                    <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 sm:p-7 border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 sm:p-7 border border-slate-200/80 dark:border-slate-800 shadow-sm interactive-card">
                         <div class="w-12 h-12 rounded-xl bg-red-100 dark:bg-red-500/20 text-red-700 dark:text-orange-300 flex items-center justify-center mb-5">
                             <i data-lucide="briefcase" class="w-6 h-6"></i>
                         </div>
@@ -460,26 +596,26 @@
                         <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 mb-5">ความรู้หลักด้านการบริหารและพัฒนาทรัพยากรมนุษย์</p>
                         
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-en font-medium bg-orange-50 dark:bg-navy-800 text-red-900 dark:text-orange-200 border border-orange-200/80 dark:border-slate-700">
+                            <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-en font-medium bg-orange-50 dark:bg-navy-800 text-red-900 dark:text-orange-200 border border-orange-200/80 dark:border-slate-700 hover:scale-105 hover:bg-orange-100 transition-transform cursor-default">
                                 Recruitment &amp; Selection
                             </span>
-                            <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-en font-medium bg-orange-50 dark:bg-navy-800 text-red-900 dark:text-orange-200 border border-orange-200/80 dark:border-slate-700">
+                            <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-en font-medium bg-orange-50 dark:bg-navy-800 text-red-900 dark:text-orange-200 border border-orange-200/80 dark:border-slate-700 hover:scale-105 hover:bg-orange-100 transition-transform cursor-default">
                                 Onboarding Design
                             </span>
-                            <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-en font-medium bg-orange-50 dark:bg-navy-800 text-red-900 dark:text-orange-200 border border-orange-200/80 dark:border-slate-700">
+                            <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-en font-medium bg-orange-50 dark:bg-navy-800 text-red-900 dark:text-orange-200 border border-orange-200/80 dark:border-slate-700 hover:scale-105 hover:bg-orange-100 transition-transform cursor-default">
                                 Employee Engagement
                             </span>
-                            <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-en font-medium bg-orange-50 dark:bg-navy-800 text-red-900 dark:text-orange-200 border border-orange-200/80 dark:border-slate-700">
+                            <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-en font-medium bg-orange-50 dark:bg-navy-800 text-red-900 dark:text-orange-200 border border-orange-200/80 dark:border-slate-700 hover:scale-105 hover:bg-orange-100 transition-transform cursor-default">
                                 Basic Labor Law
                             </span>
-                            <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-en font-medium bg-orange-50 dark:bg-navy-800 text-red-900 dark:text-orange-200 border border-orange-200/80 dark:border-slate-700">
+                            <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-en font-medium bg-orange-50 dark:bg-navy-800 text-red-900 dark:text-orange-200 border border-orange-200/80 dark:border-slate-700 hover:scale-105 hover:bg-orange-100 transition-transform cursor-default">
                                 HRD
                             </span>
                         </div>
                     </div>
 
                     <!-- Category 2: Data & Software Tools -->
-                    <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 sm:p-7 border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 sm:p-7 border border-slate-200/80 dark:border-slate-800 shadow-sm interactive-card">
                         <div class="w-12 h-12 rounded-xl bg-pastelblue-100 dark:bg-pastelblue-500/20 text-pastelblue-500 dark:text-pastelblue-300 flex items-center justify-center mb-5">
                             <i data-lucide="laptop" class="w-6 h-6"></i>
                         </div>
@@ -487,26 +623,26 @@
                         <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 mb-5">เครื่องมือจัดการข้อมูล รายงาน และออกแบบสื่อ HR</p>
                         
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-en font-medium bg-pastelblue-50 dark:bg-navy-800 text-navy-900 dark:text-pastelblue-200 border border-pastelblue-200/70 dark:border-slate-700">
+                            <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-en font-medium bg-pastelblue-50 dark:bg-navy-800 text-navy-900 dark:text-pastelblue-200 border border-pastelblue-200/70 dark:border-slate-700 hover:scale-105 hover:bg-pastelblue-100 transition-transform cursor-default">
                                 MS Excel (Pivot Table, VLOOKUP)
                             </span>
-                            <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-en font-medium bg-pastelblue-50 dark:bg-navy-800 text-navy-900 dark:text-pastelblue-200 border border-pastelblue-200/70 dark:border-slate-700">
+                            <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-en font-medium bg-pastelblue-50 dark:bg-navy-800 text-navy-900 dark:text-pastelblue-200 border border-pastelblue-200/70 dark:border-slate-700 hover:scale-105 hover:bg-pastelblue-100 transition-transform cursor-default">
                                 Power BI (Basic)
                             </span>
-                            <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-en font-medium bg-pastelblue-50 dark:bg-navy-800 text-navy-900 dark:text-pastelblue-200 border border-pastelblue-200/70 dark:border-slate-700">
+                            <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-en font-medium bg-pastelblue-50 dark:bg-navy-800 text-navy-900 dark:text-pastelblue-200 border border-pastelblue-200/70 dark:border-slate-700 hover:scale-105 hover:bg-pastelblue-100 transition-transform cursor-default">
                                 Google Forms
                             </span>
-                            <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-en font-medium bg-pastelblue-50 dark:bg-navy-800 text-navy-900 dark:text-pastelblue-200 border border-pastelblue-200/70 dark:border-slate-700">
+                            <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-en font-medium bg-pastelblue-50 dark:bg-navy-800 text-navy-900 dark:text-pastelblue-200 border border-pastelblue-200/70 dark:border-slate-700 hover:scale-105 hover:bg-pastelblue-100 transition-transform cursor-default">
                                 Canva
                             </span>
-                            <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-en font-medium bg-pastelblue-50 dark:bg-navy-800 text-navy-900 dark:text-pastelblue-200 border border-pastelblue-200/70 dark:border-slate-700">
+                            <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-en font-medium bg-pastelblue-50 dark:bg-navy-800 text-navy-900 dark:text-pastelblue-200 border border-pastelblue-200/70 dark:border-slate-700 hover:scale-105 hover:bg-pastelblue-100 transition-transform cursor-default">
                                 Notion
                             </span>
                         </div>
                     </div>
 
                     <!-- Category 3: Soft Skills -->
-                    <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 sm:p-7 border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 sm:p-7 border border-slate-200/80 dark:border-slate-800 shadow-sm interactive-card">
                         <div class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 text-navy-900 dark:text-slate-200 flex items-center justify-center mb-5">
                             <i data-lucide="users" class="w-6 h-6"></i>
                         </div>
@@ -514,19 +650,19 @@
                         <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 mb-5">ทักษะด้านมนุษยสัมพันธ์และการทำงานร่วมกับผู้อื่น</p>
                         
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-en font-medium bg-slate-100 dark:bg-navy-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700">
+                            <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-en font-medium bg-slate-100 dark:bg-navy-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700 hover:scale-105 hover:bg-slate-200 transition-transform cursor-default">
                                 Active Listening
                             </span>
-                            <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-en font-medium bg-slate-100 dark:bg-navy-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700">
+                            <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-en font-medium bg-slate-100 dark:bg-navy-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700 hover:scale-105 hover:bg-slate-200 transition-transform cursor-default">
                                 Empathy
                             </span>
-                            <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-en font-medium bg-slate-100 dark:bg-navy-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700">
+                            <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-en font-medium bg-slate-100 dark:bg-navy-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700 hover:scale-105 hover:bg-slate-200 transition-transform cursor-default">
                                 Communication
                             </span>
-                            <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-en font-medium bg-slate-100 dark:bg-navy-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700">
+                            <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-en font-medium bg-slate-100 dark:bg-navy-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700 hover:scale-105 hover:bg-slate-200 transition-transform cursor-default">
                                 Team Facilitation
                             </span>
-                            <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-en font-medium bg-slate-100 dark:bg-navy-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700">
+                            <span class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-en font-medium bg-slate-100 dark:bg-navy-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700 hover:scale-105 hover:bg-slate-200 transition-transform cursor-default">
                                 Conflict Resolution
                             </span>
                         </div>
@@ -536,13 +672,13 @@
         </section>
 
         <!-- 5. PROJECTS & CASE STUDIES -->
-        <section id="projects" class="py-20 bg-white dark:bg-navy-900/50 border-y border-slate-200/60 dark:border-slate-800/80">
+        <section id="projects" class="py-20 bg-white dark:bg-navy-900/50 border-y border-slate-200/60 dark:border-slate-800/80 reveal-on-scroll">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                     <div>
                         <span class="font-en text-xs font-bold uppercase tracking-widest text-orange-600 dark:text-orange-400">Projects &amp; Case Studies</span>
                         <h2 class="text-2xl sm:text-3xl font-bold mt-2">
-                            <span class="vintage-animated-text">ผลงานและเคสศึกษาในชั้นเรียน</span>
+                            <span class="vintage-animated-text inline-block">ผลงานและเคสศึกษาในชั้นเรียน</span>
                         </h2>
                     </div>
                     <p class="text-sm text-slate-500 dark:text-slate-400">
@@ -552,9 +688,8 @@
 
                 <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
                     <!-- Project 1 -->
-                    <article class="group bg-slate-50 dark:bg-navy-900 rounded-2xl overflow-hidden border border-slate-200/80 dark:border-slate-800 hover:border-orange-400 dark:hover:border-orange-500/40 transition-all flex flex-col justify-between">
+                    <article class="group bg-slate-50 dark:bg-navy-900 rounded-2xl overflow-hidden border border-slate-200/80 dark:border-slate-800 hover:border-orange-400 dark:hover:border-orange-500/40 interactive-card flex flex-col justify-between">
                         <div>
-                            <!-- Top Banner Strip (Vintage Red-Orange) -->
                             <div class="h-3 bg-gradient-to-r from-red-700 via-orange-600 to-amber-500"></div>
                             <div class="p-6 sm:p-8">
                                 <div class="flex items-center justify-between gap-2 mb-4">
@@ -592,9 +727,8 @@
                     </article>
 
                     <!-- Project 2 -->
-                    <article class="group bg-slate-50 dark:bg-navy-900 rounded-2xl overflow-hidden border border-slate-200/80 dark:border-slate-800 hover:border-pastelblue-300 dark:hover:border-pastelblue-500/40 transition-all flex flex-col justify-between">
+                    <article class="group bg-slate-50 dark:bg-navy-900 rounded-2xl overflow-hidden border border-slate-200/80 dark:border-slate-800 hover:border-pastelblue-300 dark:hover:border-pastelblue-500/40 interactive-card flex flex-col justify-between">
                         <div>
-                            <!-- Top Banner Strip -->
                             <div class="h-3 bg-gradient-to-r from-pastelblue-500 to-pastelblue-200"></div>
                             <div class="p-6 sm:p-8">
                                 <div class="flex items-center justify-between gap-2 mb-4">
@@ -635,12 +769,12 @@
         </section>
 
         <!-- 6. ACTIVITIES & EXPERIENCE -->
-        <section id="experience" class="py-20">
+        <section id="experience" class="py-20 reveal-on-scroll">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center">
                     <span class="font-en text-xs font-bold uppercase tracking-widest text-orange-600 dark:text-orange-400">Activities &amp; Experience</span>
                     <h2 class="text-2xl sm:text-3xl font-bold mt-2">
-                        <span class="vintage-animated-text">กิจกรรมมหาวิทยาลัยและประสบการณ์การทำงานเป็นทีม</span>
+                        <span class="vintage-animated-text inline-block">กิจกรรมมหาวิทยาลัยและประสบการณ์การทำงานเป็นทีม</span>
                     </h2>
                 </div>
 
@@ -648,9 +782,9 @@
                 <div class="mt-12 relative border-l-2 border-orange-300 dark:border-slate-800 ml-4 sm:ml-6 space-y-10">
                     <!-- Timeline Item 1 -->
                     <div class="relative pl-8 sm:pl-10">
-                        <span class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-gradient-to-br from-red-600 to-orange-500 ring-4 ring-slate-50 dark:ring-navy-950"></span>
+                        <span class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-gradient-to-br from-red-600 to-orange-500 ring-4 ring-slate-50 dark:ring-navy-950 animate-pulse"></span>
                         
-                        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200/80 dark:border-slate-800 shadow-sm">
+                        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200/80 dark:border-slate-800 shadow-sm interactive-card">
                             <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
                                 <span class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full bg-orange-100 dark:bg-orange-500/20 text-red-700 dark:text-orange-300">
                                     <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
@@ -669,9 +803,9 @@
 
                     <!-- Timeline Item 2 -->
                     <div class="relative pl-8 sm:pl-10">
-                        <span class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-pastelblue-500 ring-4 ring-slate-50 dark:ring-navy-950"></span>
+                        <span class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-pastelblue-500 ring-4 ring-slate-50 dark:ring-navy-950 animate-pulse"></span>
                         
-                        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200/80 dark:border-slate-800 shadow-sm">
+                        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200/80 dark:border-slate-800 shadow-sm interactive-card">
                             <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
                                 <span class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full bg-pastelblue-100 dark:bg-pastelblue-500/20 text-pastelblue-600 dark:text-pastelblue-300">
                                     <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
@@ -692,18 +826,18 @@
         </section>
 
         <!-- 7. CERTIFICATIONS -->
-        <section id="certifications" class="py-20 bg-white dark:bg-navy-900/50 border-t border-slate-200/60 dark:border-slate-800/80">
+        <section id="certifications" class="py-20 bg-white dark:bg-navy-900/50 border-t border-slate-200/60 dark:border-slate-800/80 reveal-on-scroll">
             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-2xl mx-auto">
                     <span class="font-en text-xs font-bold uppercase tracking-widest text-orange-600 dark:text-orange-400">Certifications</span>
                     <h2 class="text-2xl sm:text-3xl font-bold mt-2">
-                        <span class="vintage-animated-text">ใบประกาศนียบัตรและการเรียนรู้เพิ่มเติม</span>
+                        <span class="vintage-animated-text inline-block">ใบประกาศนียบัตรและการเรียนรู้เพิ่มเติม</span>
                     </h2>
                 </div>
 
                 <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Cert 1 -->
-                    <div class="flex items-start gap-4 p-6 rounded-2xl bg-slate-50 dark:bg-navy-900 border border-slate-200/80 dark:border-slate-800 hover:border-orange-300 dark:hover:border-orange-500/40 transition-colors">
+                    <div class="flex items-start gap-4 p-6 rounded-2xl bg-slate-50 dark:bg-navy-900 border border-slate-200/80 dark:border-slate-800 hover:border-orange-300 dark:hover:border-orange-500/40 interactive-card">
                         <div class="p-3 rounded-xl bg-orange-100 dark:bg-orange-500/20 text-red-700 dark:text-orange-300 shrink-0">
                             <i data-lucide="award" class="w-6 h-6"></i>
                         </div>
@@ -719,7 +853,7 @@
                     </div>
 
                     <!-- Cert 2 -->
-                    <div class="flex items-start gap-4 p-6 rounded-2xl bg-slate-50 dark:bg-navy-900 border border-slate-200/80 dark:border-slate-800 hover:border-pastelblue-300 dark:hover:border-pastelblue-500/40 transition-colors">
+                    <div class="flex items-start gap-4 p-6 rounded-2xl bg-slate-50 dark:bg-navy-900 border border-slate-200/80 dark:border-slate-800 hover:border-pastelblue-300 dark:hover:border-pastelblue-500/40 interactive-card">
                         <div class="p-3 rounded-xl bg-pastelblue-100 dark:bg-pastelblue-500/20 text-pastelblue-500 dark:text-pastelblue-300 shrink-0">
                             <i data-lucide="badge-check" class="w-6 h-6"></i>
                         </div>
@@ -753,7 +887,7 @@
 
                         <div class="mt-8 space-y-4">
                             <!-- Email -->
-                            <a href="mailto:ทฟหำพ23062548@email.com" class="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-colors">
+                            <a href="mailto:ทฟหำพ23062548@email.com" class="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 hover:translate-x-1.5 border border-white/10 transition-all">
                                 <div class="p-2.5 rounded-lg bg-orange-500/20 text-orange-300">
                                     <i data-lucide="mail" class="w-5 h-5"></i>
                                 </div>
@@ -764,7 +898,7 @@
                             </a>
 
                             <!-- Phone -->
-                            <a href="tel:0613218190" class="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-colors">
+                            <a href="tel:0613218190" class="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 hover:translate-x-1.5 border border-white/10 transition-all">
                                 <div class="p-2.5 rounded-lg bg-pastelblue-400/20 text-pastelblue-300">
                                     <i data-lucide="phone" class="w-5 h-5"></i>
                                 </div>
@@ -775,7 +909,7 @@
                             </a>
 
                             <!-- LinkedIn -->
-                            <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-colors">
+                            <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 hover:translate-x-1.5 border border-white/10 transition-all">
                                 <div class="p-2.5 rounded-lg bg-white/10 text-white">
                                     <i data-lucide="linkedin" class="w-5 h-5"></i>
                                 </div>
@@ -821,7 +955,7 @@
                             </div>
 
                             <button type="submit"
-                                    class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-red-700 to-orange-600 hover:from-red-800 hover:to-orange-700 text-white font-medium text-sm shadow-md transition-all">
+                                    class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-red-700 to-orange-600 hover:from-red-800 hover:to-orange-700 text-white font-medium text-sm shadow-md hover:-translate-y-0.5 transition-all">
                                 <i data-lucide="send" class="w-4 h-4"></i>
                                 ส่งข้อความทันที
                             </button>
@@ -833,7 +967,7 @@
                 <footer class="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
                     <p>&copy; 2026 นายสุรสิทธิ์ สาลีสี (Surasit Saleesee). All rights reserved.</p>
                     <p class="font-en flex items-center gap-1.5">
-                        <svg class="w-3.5 h-3.5 text-orange-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg class="w-3.5 h-3.5 text-orange-400 freedom-symbol-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <circle cx="12" cy="12" r="10"/>
                             <path d="M12 2v20M12 12l-6.5 6.5M12 12l6.5 6.5"/>
                         </svg>
@@ -844,12 +978,95 @@
         </section>
     </main>
 
-    <!-- JAVASCRIPT: Icons, Dark/Light Mode, Mobile Menu & Contact Handler -->
+    <!-- JAVASCRIPT: High-Motion Animations, Icons, Dark/Light Mode & Interactivity -->
     <script>
         // 1. Initialize Lucide Icons
         lucide.createIcons();
 
-        // 2. Dark / Light Mode Toggle with LocalStorage Persistence
+        // 2. Split Hero Name into Animated Wave Characters (ตัวหนังสือเด้งขยับทีละตัวอักษร สีแดงตัดส้มวินเทจ)
+        function applyWaveText(elementId) {
+            const el = document.getElementById(elementId);
+            if (!el) return;
+            const text = el.textContent.trim();
+            el.innerHTML = '';
+            [...text].forEach((char, idx) => {
+                const span = document.createElement('span');
+                span.textContent = char === ' ' ? ' ' : char;
+                span.className = 'wave-char vintage-animated-text';
+                span.style.animationDelay = `${idx * 0.08}s`;
+                el.appendChild(span);
+            });
+        }
+        applyWaveText('wave-thai-name');
+        applyWaveText('wave-en-name');
+
+        // 3. Typewriter Loop for Tagline
+        const taglineEl = document.getElementById('typewriter-tagline');
+        const taglineText = '"Bridging organizational goals with employee happiness & growth."';
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeLoop() {
+            if (!taglineEl) return;
+            if (!isDeleting) {
+                taglineEl.textContent = taglineText.slice(0, charIndex + 1);
+                charIndex++;
+                if (charIndex === taglineText.length) {
+                    isDeleting = true;
+                    setTimeout(typeLoop, 2800);
+                    return;
+                }
+                setTimeout(typeLoop, 45);
+            } else {
+                taglineEl.textContent = taglineText.slice(0, charIndex - 1);
+                charIndex--;
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    setTimeout(typeLoop, 500);
+                    return;
+                }
+                setTimeout(typeLoop, 22);
+            }
+        }
+        typeLoop();
+
+        // 4. Interactive 3D Mouse Tilt on Kurt Cobain Vintage Poster
+        const tiltPoster = document.getElementById('tilt-poster');
+        if (tiltPoster) {
+            tiltPoster.addEventListener('mousemove', (e) => {
+                const rect = tiltPoster.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width - 0.5;
+                const y = (e.clientY - rect.top) / rect.height - 0.5;
+                tiltPoster.style.transform = `perspective(700px) rotateY(${x * 16}deg) rotateX(${-y * 16}deg) scale(1.03)`;
+            });
+            tiltPoster.addEventListener('mouseleave', () => {
+                tiltPoster.style.transform = 'perspective(700px) rotateY(0deg) rotateX(0deg) scale(1)';
+            });
+        }
+
+        // 5. Scroll Reveal Observer (เปิดเอฟเฟกต์เด้งขึ้นมาทีละส่วนเมื่อเลื่อนหน้าจอ)
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(section => {
+            revealObserver.observe(section);
+        });
+
+        // 6. Scroll Progress Bar
+        const progressBar = document.getElementById('scroll-progress');
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            progressBar.style.width = `${scrollPercent}%`;
+        });
+
+        // 7. Dark / Light Mode Toggle
         const themeToggleBtn = document.getElementById('theme-toggle');
         const htmlElement = document.documentElement;
 
@@ -862,14 +1079,10 @@
 
         themeToggleBtn.addEventListener('click', () => {
             htmlElement.classList.toggle('dark');
-            if (htmlElement.classList.contains('dark')) {
-                localStorage.setItem('theme', 'dark');
-            } else {
-                localStorage.setItem('theme', 'light');
-            }
+            localStorage.setItem('theme', htmlElement.classList.contains('dark') ? 'dark' : 'light');
         });
 
-        // 3. Mobile Navigation Toggle
+        // 8. Mobile Navigation Toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
@@ -884,7 +1097,7 @@
             });
         });
 
-        // 4. Smooth Scrolling for Anchor Links (with fixed header offset)
+        // 9. Smooth Scrolling for Anchor Links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const targetId = this.getAttribute('href');
@@ -905,7 +1118,7 @@
             });
         });
 
-        // 5. Contact Form Mailto Integration
+        // 10. Contact Form Mailto Integration
         const contactForm = document.getElementById('contact-form');
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
