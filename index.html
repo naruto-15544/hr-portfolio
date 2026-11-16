@@ -6,10 +6,10 @@
     <title>สุรสิทธิ์ สาลีสี | HR Portfolio & Resume</title>
     <meta name="description" content="Portfolio ของ นายสุรสิทธิ์ สาลีสี นักศึกษาสาขาการบริหารทรัพยากรมนุษย์ มหาวิทยาลัยราชภัฏนครปฐม">
     
-    <!-- Google Fonts: Prompt & Plus Jakarta Sans -->
+    <!-- Google Fonts: Prompt -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -24,8 +24,8 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Prompt', 'Plus Jakarta Sans', 'sans-serif'],
-                        en: ['Plus Jakarta Sans', 'Prompt', 'sans-serif'],
+                        sans: ['Prompt', 'sans-serif'],
+                        en: ['Prompt', 'sans-serif'],
                     },
                 }
             }
@@ -33,19 +33,31 @@
     </script>
 
     <style>
+        /* ป้องกันสระลอยและปรับการแสดงผลภาษาไทยให้สมบูรณ์ */
+        html {
+            font-family: 'Prompt', sans-serif;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
         body {
             transition: background-color 0.2s ease, color 0.2s ease;
-            font-family: 'Prompt', 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Prompt', sans-serif;
+            line-height: 1.7;
             overflow-x: hidden;
         }
         .glass-nav {
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
         }
-        /* ดุ๊กดิ๊ก Animations (Subtle & Playful) */
         @keyframes dugdik {
             0%, 100% { transform: translateY(0) rotate(0deg); }
             50% { transform: translateY(-4px) rotate(2deg); }
+        }
+        @keyframes nameWiggle {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-3px) rotate(-1deg); }
+            75% { transform: translateY(-3px) rotate(1deg); }
         }
         @keyframes floatSlow {
             0%, 100% { transform: translateY(0); }
@@ -53,6 +65,10 @@
         }
         .animate-dugdik {
             animation: dugdik 3s ease-in-out infinite;
+        }
+        .animate-name-wiggle {
+            animation: nameWiggle 2.5s ease-in-out infinite;
+            display: inline-block;
         }
         .animate-float {
             animation: floatSlow 4s ease-in-out infinite;
@@ -74,12 +90,12 @@
             <div class="flex items-center justify-between h-16">
                 <!-- Brand / Name -->
                 <a href="#" class="flex items-center gap-2.5 group">
-                    <div class="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-en font-bold text-base shadow-sm group-hover:rotate-12 transition-transform">
+                    <div class="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-base shadow-sm group-hover:rotate-12 transition-transform">
                         SS
                     </div>
                     <div class="flex flex-col">
-                        <span class="font-semibold text-sm tracking-tight text-slate-900 dark:text-white leading-none">สุรสิทธิ์ สาลีสี</span>
-                        <span class="font-en text-[11px] text-emerald-600 dark:text-emerald-400 font-medium tracking-wide uppercase mt-0.5">HR Professional Portfolio</span>
+                        <span class="font-semibold text-sm tracking-tight text-slate-900 dark:text-white leading-tight animate-name-wiggle">สุรสิทธิ์ สาลีสี</span>
+                        <span class="text-[11px] text-emerald-600 dark:text-emerald-400 font-medium tracking-wide uppercase leading-tight">HR Professional Portfolio</span>
                     </div>
                 </a>
 
@@ -128,8 +144,8 @@
                     </div>
 
                     <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
-                        นายสุรสิทธิ์ สาลีสี <br>
-                        <span class="text-emerald-600 dark:text-emerald-400 font-normal text-2xl sm:text-3xl mt-1 block">Human Resource Management Student</span>
+                        <span class="animate-name-wiggle inline-block">นายสุรสิทธิ์ สาลีสี</span> <br>
+                        <span class="text-emerald-600 dark:text-emerald-400 font-normal text-2xl sm:text-3xl mt-2 block">Human Resource Management Student</span>
                     </h1>
 
                     <p class="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
@@ -152,11 +168,11 @@
                 <div class="lg:col-span-5 animate-float">
                     <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-5 hover-lift">
                         <div class="flex items-center gap-4 pb-5 border-b border-slate-100 dark:border-slate-800">
-                            <div class="w-16 h-16 rounded-2xl bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 flex items-center justify-center text-2xl font-bold font-en shadow-inner">
+                            <div class="w-16 h-16 rounded-2xl bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 flex items-center justify-center text-2xl font-bold shadow-inner">
                                 SS
                             </div>
                             <div>
-                                <h3 class="font-bold text-lg text-slate-900 dark:text-white">สุรสิทธิ์ สาลีสี</h3>
+                                <h3 class="font-bold text-lg text-slate-900 dark:text-white leading-snug animate-name-wiggle">สุรสิทธิ์ สาลีสี</h3>
                                 <p class="text-xs text-slate-500 dark:text-slate-400">มหาวิทยาลัยราชภัฏนครปฐม</p>
                                 <span class="inline-block mt-1 px-2.5 py-0.5 rounded text-[11px] font-medium bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300">ชั้นปีที่ 3 • HR Major</span>
                             </div>
@@ -173,7 +189,7 @@
                             </div>
                             <div class="flex justify-between">
                                 <span class="text-slate-500 dark:text-slate-400">อีเมล:</span>
-                                <span class="font-medium text-emerald-600 dark:text-emerald-400 font-en">surasit@email.com</span>
+                                <span class="font-medium text-emerald-600 dark:text-emerald-400">surasit@email.com</span>
                             </div>
                         </div>
                     </div>
@@ -376,7 +392,7 @@
                             </div>
                             <div class="flex items-center gap-3">
                                 <i data-lucide="phone" class="w-4 h-4 text-emerald-400"></i>
-                                <span class="font-en">061-321-8190</span>
+                                <span>061-321-8190</span>
                             </div>
                             <div class="flex items-center gap-3">
                                 <i data-lucide="map-pin" class="w-4 h-4 text-emerald-400"></i>
@@ -438,6 +454,7 @@
             htmlEl.classList.remove('dark');
         }
 
+        themeTitleToggle = document.getElementById('theme-toggle');
         themeToggle.addEventListener('click', () => {
             htmlEl.classList.toggle('dark');
             localStorage.theme = htmlEl.classList.contains('dark') ? 'dark' : 'light';
@@ -466,8 +483,7 @@
 
 ${message}
 
----
-จาก: ${name} (${email})`;
+---\nจาก: ${name} (${email})`;
             window.location.href = `mailto:surasit@email.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         });
     </script>
