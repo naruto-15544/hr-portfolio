@@ -27,16 +27,6 @@
                         sans: ['Prompt', 'Plus Jakarta Sans', 'sans-serif'],
                         en: ['Plus Jakarta Sans', 'Prompt', 'sans-serif'],
                     },
-                    colors: {
-                        brand: {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            500: '#22c55e',
-                            600: '#16a34a',
-                            700: '#15803d',
-                            900: '#14532d',
-                        }
-                    }
                 }
             }
         }
@@ -46,10 +36,33 @@
         body {
             transition: background-color 0.2s ease, color 0.2s ease;
             font-family: 'Prompt', 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
         }
         .glass-nav {
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
+        }
+        /* ดุ๊กดิ๊ก Animations (Subtle & Playful) */
+        @keyframes dugdik {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-4px) rotate(2deg); }
+        }
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        .animate-dugdik {
+            animation: dugdik 3s ease-in-out infinite;
+        }
+        .animate-float {
+            animation: floatSlow 4s ease-in-out infinite;
+        }
+        .hover-lift {
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px -8px rgba(16, 185, 129, 0.2);
         }
     </style>
 </head>
@@ -61,7 +74,7 @@
             <div class="flex items-center justify-between h-16">
                 <!-- Brand / Name -->
                 <a href="#" class="flex items-center gap-2.5 group">
-                    <div class="w-9 h-9 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-en font-bold text-base shadow-sm">
+                    <div class="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-en font-bold text-base shadow-sm group-hover:rotate-12 transition-transform">
                         SS
                     </div>
                     <div class="flex flex-col">
@@ -82,11 +95,11 @@
 
                 <!-- Right Actions: Theme Toggle & Mobile Menu -->
                 <div class="flex items-center gap-2">
-                    <button id="theme-toggle" aria-label="Toggle Dark Mode" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-colors">
+                    <button id="theme-toggle" aria-label="Toggle Dark Mode" class="p-2 rounded-xl bg-slate-100 hover:bg-emerald-100 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-emerald-400 transition-colors">
                         <i data-lucide="moon" class="w-4 h-4 block dark:hidden"></i>
                         <i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
                     </button>
-                    <button id="mobile-menu-btn" aria-label="Open Menu" class="md:hidden p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                    <button id="mobile-menu-btn" aria-label="Open Menu" class="md:hidden p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
                         <i data-lucide="menu" class="w-5 h-5"></i>
                     </button>
                 </div>
@@ -109,8 +122,8 @@
         <section class="py-16 md:py-24 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 text-xs font-medium border border-emerald-200 dark:border-emerald-800">
-                        <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 text-xs font-medium border border-emerald-200 dark:border-emerald-800 animate-dugdik shadow-sm">
+                        <i data-lucide="sparkles" class="w-4 h-4 text-emerald-500"></i>
                         <span>พร้อมเปิดรับโอกาสฝึกงานและร่วมงานสาย HR</span>
                     </div>
 
@@ -124,28 +137,28 @@
                     </p>
 
                     <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
-                        <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm shadow-sm transition-colors">
+                        <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm shadow-md hover:-translate-y-0.5 transition-all">
                             <i data-lucide="send" class="w-4 h-4"></i>
                             ติดต่อร่วมงาน
                         </a>
-                        <a href="#projects" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-medium text-sm border border-slate-200 dark:border-slate-700 transition-colors">
-                            <i data-lucide="folder-git-2" class="w-4 h-4">></i>
+                        <a href="#projects" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-medium text-sm border border-slate-200 dark:border-slate-700 shadow-sm hover:-translate-y-0.5 transition-all">
+                            <i data-lucide="folder-git-2" class="w-4 h-4"></i>
                             ดูผลงานทั้งหมด
                         </a>
                     </div>
                 </div>
 
-                <!-- Right Profile Summary Card -->
-                <div class="lg:col-span-5">
-                    <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm space-y-5">
+                <!-- Right Profile Summary Card with Float Animation -->
+                <div class="lg:col-span-5 animate-float">
+                    <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-5 hover-lift">
                         <div class="flex items-center gap-4 pb-5 border-b border-slate-100 dark:border-slate-800">
-                            <div class="w-16 h-16 rounded-2xl bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 flex items-center justify-center text-2xl font-bold font-en">
+                            <div class="w-16 h-16 rounded-2xl bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 flex items-center justify-center text-2xl font-bold font-en shadow-inner">
                                 SS
                             </div>
                             <div>
                                 <h3 class="font-bold text-lg text-slate-900 dark:text-white">สุรสิทธิ์ สาลีสี</h3>
                                 <p class="text-xs text-slate-500 dark:text-slate-400">มหาวิทยาลัยราชภัฏนครปฐม</p>
-                                <span class="inline-block mt-1 px-2.5 py-0.5 rounded text-[11px] font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">ชั้นปีที่ 3 • HR Major</span>
+                                <span class="inline-block mt-1 px-2.5 py-0.5 rounded text-[11px] font-medium bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300">ชั้นปีที่ 3 • HR Major</span>
                             </div>
                         </div>
 
@@ -190,7 +203,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- HR Hard Skills -->
-                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover-lift">
                     <div class="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-4">
                         <i data-lucide="briefcase" class="w-5 h-5"></i>
                     </div>
@@ -204,7 +217,7 @@
                 </div>
 
                 <!-- Tools & Software -->
-                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover-lift">
                     <div class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-4">
                         <i data-lucide="laptop" class="w-5 h-5"></i>
                     </div>
@@ -218,7 +231,7 @@
                 </div>
 
                 <!-- Soft Skills -->
-                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover-lift">
                     <div class="w-10 h-10 rounded-xl bg-amber-50 dark:bg-amber-950 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-4">
                         <i data-lucide="users" class="w-5 h-5"></i>
                     </div>
@@ -243,7 +256,7 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <!-- Project 1 -->
-                    <div class="bg-slate-50 dark:bg-slate-900 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
+                    <div class="bg-slate-50 dark:bg-slate-900 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover-lift">
                         <div>
                             <span class="inline-block px-3 py-1 rounded-md text-xs font-medium bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 mb-4">
                                 รายวิชา HRD
@@ -260,7 +273,7 @@
                     </div>
 
                     <!-- Project 2 -->
-                    <div class="bg-slate-50 dark:bg-slate-900 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
+                    <div class="bg-slate-50 dark:bg-slate-900 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover-lift">
                         <div>
                             <span class="inline-block px-3 py-1 rounded-md text-xs font-medium bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 mb-4">
                                 People Analytics
@@ -288,8 +301,8 @@
 
             <div class="space-y-6 border-l-2 border-slate-200 dark:border-slate-800 pl-6 ml-4">
                 <div class="relative">
-                    <span class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-emerald-600 ring-4 ring-slate-50 dark:ring-slate-950"></span>
-                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <span class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-emerald-600 ring-4 ring-slate-50 dark:ring-slate-950 animate-pulse"></span>
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover-lift">
                         <span class="text-xs text-emerald-600 dark:text-emerald-400 font-medium">ปีการศึกษา 2567</span>
                         <h4 class="font-bold text-base text-slate-900 dark:text-white mt-1">หัวหน้าฝ่ายสวัสดิการและดูแลทีมงานค่ายอาสา</h4>
                         <p class="text-sm text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
@@ -300,7 +313,7 @@
 
                 <div class="relative">
                     <span class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-slate-400 dark:bg-slate-600 ring-4 ring-slate-50 dark:ring-slate-950"></span>
-                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover-lift">
                         <span class="text-xs text-slate-500 font-medium">ปีการศึกษา 2566</span>
                         <h4 class="font-bold text-base text-slate-900 dark:text-white mt-1">ผู้จัดกิจกรรม Ice-breaking &amp; Team Building</h4>
                         <p class="text-sm text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
@@ -320,7 +333,7 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="flex items-start gap-4 p-6 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                    <div class="flex items-start gap-4 p-6 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover-lift">
                         <div class="p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 shrink-0">
                             <i data-lucide="award" class="w-6 h-6"></i>
                         </div>
@@ -331,7 +344,7 @@
                         </div>
                     </div>
 
-                    <div class="flex items-start gap-4 p-6 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                    <div class="flex items-start gap-4 p-6 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover-lift">
                         <div class="p-3 rounded-xl bg-blue-50 dark:bg-blue-950 text-blue-600 dark:text-blue-400 shrink-0">
                             <i data-lucide="award" class="w-6 h-6"></i>
                         </div>
@@ -372,7 +385,7 @@
                         </div>
                     </div>
 
-                    <div class="lg:col-span-7 bg-slate-800 p-6 sm:p-8 rounded-2xl border border-slate-700">
+                    <div class="lg:col-span-7 bg-slate-800 p-6 sm:p-8 rounded-2xl border border-slate-700 shadow-xl">
                         <form id="contact-form" class="space-y-4">
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
@@ -396,7 +409,7 @@
                                 <textarea id="message" rows="3" required placeholder="รายละเอียดที่ต้องการติดต่อ..."
                                           class="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 text-white"></textarea>
                             </div>
-                            <button type="submit" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm transition-colors">
+                            <button type="submit" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm transition-colors shadow-sm">
                                 ส่งข้อความ
                             </button>
                         </form>
@@ -405,7 +418,7 @@
 
                 <footer class="mt-12 pt-6 border-t border-slate-800 text-xs text-slate-400 flex flex-col sm:flex-row justify-between gap-4">
                     <p>&copy; 2026 สุรสิทธิ์ สาลีสี. All rights reserved.</p>
-                    <p>Clean &amp; Professional HR Portfolio</p>
+                    <p>Clean &amp; Professional HR Portfolio (Dugdik Edition)</p>
                 </footer>
             </div>
         </section>
@@ -449,7 +462,12 @@
             const subject = document.getElementById('subject').value;
             const message = document.getElementById('message').value;
 
-            const body = `สวัสดีครับ คุณสุรสิทธิ์,\n\n${message}\n\n---\nจาก: ${name} (${email})`;
+            const body = `สวัสดีครับ คุณสุรสิทธิ์,
+
+${message}
+
+---
+จาก: ${name} (${email})`;
             window.location.href = `mailto:surasit@email.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         });
     </script>
